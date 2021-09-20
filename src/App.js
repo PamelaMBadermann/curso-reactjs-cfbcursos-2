@@ -7,7 +7,7 @@ export default function App() {
 
   return (
     <>
-      <label>Curso</label>
+      <label>Digite seu nome</label>
       <input type='text' name='fnome' value={nome} onChange={(e)=>setNome(e.target.value)}/>
       <p>Nome digitado: {nome}</p>
       <label>Selecione um carro</label>
