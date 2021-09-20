@@ -1,23 +1,34 @@
-import React,{ useState } from 'react';
+import React, {useState} from 'react'
 
 export default function App() {
 
-  const [nome, setNome] = useState('')
-  const [carro, setCarro] = useState('')
+  const [log, setLog]=useState(false)
 
-  return (
+  const msglogin=()=>{
+    return 'Usuário Logado'
+  }
+
+  const msglogoff=()=>{
+    return 'Favor Logar'
+  }
+
+  const cumprimento=()=>{
+    const hora=new Date().getHours()
+
+    if (hora >=0 && hora < 13) {
+      return <p>Bom dia</p>
+    } else if (hora >=13 && hora < 18) {
+      return <p>Boa tarde</p>
+    } else {
+      return <p>Boa noite</p>
+    }
+  }
+
+  return(
     <>
-      <label>Digite seu nome</label>
-      <input type='text' name='fnome' value={nome} onChange={(e)=>setNome(e.target.value)}/>
-      <p>Nome digitado: {nome}</p>
-      <label>Selecione um carro</label>
-      <select value={carro} onChange={(e)=>setCarro(e.target.value)}>
-        <option value='HRV'>HRV</option>
-        <option value='Golf'>Golf</option>
-        <option value='Cruze'>Cruze</option>
-        <option value='Argo'>Argo</option>
-      </select>
-      <p>Carro selecionado: {carro}</p>
+      {cumprimento()}
+      <p>{log?msglogin():msglogoff()}</p>
+      <button onClick={()=>setLog(!log)}>{log?'Logoff':'Login'}</button>
     </>
-  );
+  )
 }
