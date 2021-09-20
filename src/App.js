@@ -1,34 +1,32 @@
-import React, {useState} from 'react'
+import React,{ useState } from 'react';
 
 export default function App() {
 
-  const [log, setLog]=useState(false)
+  const [form, setForm] = useState({"nome":"","curso":"","ano":""})
 
-  const msglogin=()=>{
-    return 'Usuário Logado'
-  }
-
-  const msglogoff=()=>{
-    return 'Favor Logar'
-  }
-
-  const cumprimento=()=>{
-    const hora=new Date().getHours()
-
-    if (hora >=0 && hora < 13) {
-      return <p>Bom dia</p>
-    } else if (hora >=13 && hora < 18) {
-      return <p>Boa tarde</p>
-    } else {
-      return <p>Boa noite</p>
+  const handleFormChange=(e)=>{
+    if (e.target.getAttribute('name')==='fnome') {
+      setForm({"nome":e.target.value,"curso":form.curso,"ano":form.ano})
+    } else if (e.target.getAttribute('name')==='fcurso') {
+      setForm({"nome":form.nome,"curso":e.target.value,"ano":form.ano})
+    } else if (e.target.getAttribute('name')==='fano') {
+      setForm({"nome":form.nome,"curso":form.curso,"ano":e.target.value})
     }
   }
 
-  return(
+  return (
     <>
-      {cumprimento()}
-      <p>{log?msglogin():msglogoff()}</p>
-      <button onClick={()=>setLog(!log)}>{log?'Logoff':'Login'}</button>
+      <label>Nome</label>
+      <input type='text' name='fnome' value={form.nome} onChange={(e)=>handleFormChange()}/>
+      <label>Curso</label>
+      <input type='text' name='fcurso' value={form.curso} onChange={(e)=>handleFormChange()}/>
+      <label>Ano</label>
+      <input type='text' name='fano' value={form.ano} onChange={(e)=>handleFormChange()}/>
+      
+      <p>Nome digitado: {form.nome}</p>
+      <p>Curso digitado: {form.curso}</p>
+      <p>Ano digitado: {form.ano}</p>
     </>
-  )
+  );
 }
+
