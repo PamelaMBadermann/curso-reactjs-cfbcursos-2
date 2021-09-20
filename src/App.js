@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{ useState } from 'react';
 
-function App() {
+export default function App() {
+
+  const [nome, setNome] = useState('')
+  const [carro, setCarro] = useState('')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <label>Curso</label>
+      <input type='text' name='fnome' value={nome} onChange={(e)=>setNome(e.target.value)}/>
+      <p>Nome digitado: {nome}</p>
+      <label>Selecione um carro</label>
+      <select value={carro} onChange={(e)=>setCarro(e.target.value)}>
+        <option value='HRV'>HRV</option>
+        <option value='Golf'>Golf</option>
+        <option value='Cruze'>Cruze</option>
+        <option value='Argo'>Argo</option>
+      </select>
+      <p>Carro selecionado: {carro}</p>
+    </>
   );
 }
-
-export default App;
