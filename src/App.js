@@ -1,20 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 export default function App() {
 
-  const [contagem, setContagem] = useState(0)
+  const [nome,setNome] = useState()
 
-  useEffect(
-    () => {
-      console.log("Página carregada")
-      document.title="Contagem "+contagem
-    }
-  )
+  const armazenar=(chave,valor)=> {
+    localStorage.setItem(chave,valor)
+  }
+
+  const consultar=(chave)=> {
+    alert(localStorage.getItem(chave))
+  }
+
+  const apagar=(chave)=> {
+    localStorage.removeItem(chave)
+  }
 
   return (
     <>
-      <p>Contagem: {contagem}</p>
-      <button onClick={()=>setContagem(contagem+1)}>Contar</button>
+      <label>Digite um nome</label>
+      <input type='text' value={nome} onChange={(e)=>setNome(e.target.value)}/>
+      <button onClick={()=>armazenar('ls_nome', nome)}>Gravar Nome</button>
+      <button onClick={()=>consultar('ls_nome', nome)}>Ver Nome</button>
+      <button onClick={()=>apagar('ls_nome', nome)}>Remover Nome</button>
     </>
   );
 }
