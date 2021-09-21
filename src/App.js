@@ -6,7 +6,7 @@ export default function App() {
   return (
     <>
       <h1>Componentes de Classe</h1>
-      <Carro />
+      <Carro fator={10}/>
     </>
   );
 }

@@ -14,21 +14,31 @@ export default class Carro extends React.Component{
     // this.state.ligado = true - não renderiza a tela
     // this.setState({ligado:!this.state.ligado})
 
-    // forma mais segura:
     this.setState(
       (state)=>(
         {ligado: !state.ligado}
       )
     )
-    // função tradicional
+  }
+
+  acelerar(){
     this.setState(
-      function(state){
-        return{
-          ligado:!state.ligado
-        }
-      }
+      (state,props)=>(
+        {velAtual:state.velAtual + props.fator}
+      )
     )
   }
+
+  /*
+ // método tradicional:
+  acelerar(){
+    this.setState(
+      (state,props)=>(
+        {velAtual:this.state.velAtual + this.props.fator}
+      )
+    )
+  }
+  */
 
   render(){
     return(
@@ -39,6 +49,9 @@ export default class Carro extends React.Component{
         <p>Vel. Atual: {this.state.velAtual}</p>
         <button onClick={()=>this.ligarDesligar()}>
           {this.state.ligado ? 'Desligar Carro' : 'Ligar Carro'}
+        </button>
+        <button onClick={()=>this.acelerar()}>
+          Acelerar
         </button>
       </div>
     )
