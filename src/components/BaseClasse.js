@@ -14,18 +14,18 @@ export default class BaseClasse extends React.Component{
     }
     this.status=this.props.status
 
+     // função para manipular state
+    ativarDesativar() {
+      this.setState(
+        state=>({
+          ativo= !state.ativo
+        })
+      )
+    }
+
     // bindagem:
     let ad=ativarDesativar.bind(this)
     // Instruções de construtor
-  }
-
-  // função para manipular state
-  ativarDesativar() {
-    this.setState(
-      state=>({
-        ativo: !state.ativo
-      })
-    )
   }
 
   componentDidMount() {
